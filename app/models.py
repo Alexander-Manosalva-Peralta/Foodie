@@ -1,22 +1,50 @@
 # Foodie_ECommerce_V1.0/app/models.py
-
 from dataclasses import dataclass, field
 from typing import List, Optional
+from . import db
+from flask_login import UserMixin
 
-# --- Definición de Modelos de Datos (Usando dataclasses para claridad) ---
+# ----------------- MODELOS SQLALCHEMY -----------------
+class ProductModel(db.Model):
+    __tablename__ = 'products'
+    id = db.Column(db.String, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(300))
+    base_price = db.Column(db.Float, nullable=False)
+    image_url = db.Column(db.String(200))
+    is_customizable = db.Column(db.Boolean, default=False)
 
+class UserModel(UserMixin, db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.String, primary_key=True)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+    name = db.Column(db.String(100))
+    password = db.Column(db.String(200))
+    address = db.Column(db.JSON)
+    phone = db.Column(db.String(50))
+
+class OrderModel(db.Model):
+    __tablename__ = 'orders'
+    id = db.Column(db.String, primary_key=True)
+    user_id = db.Column(db.String, db.ForeignKey('users.id'))
+    items = db.Column(db.JSON)
+    total_amount = db.Column(db.Float)
+    shipping_address = db.Column(db.JSON)
+    payment_status = db.Column(db.String(50))
+    delivery_status = db.Column(db.String(50))
+    created_at = db.Column(db.String(50))
+
+# ----------------- DATACLASS PARA MOCKS -----------------
 @dataclass
 class Ingredient:
-    """Modelo para un ingrediente."""
     id: str
     name: str
     price: float
     stock: int
-    category: str # e.g., 'Base', 'Proteína', 'Salsa'
+    category: str  # 'Base', 'Proteína', 'Salsa', etc.
 
 @dataclass
 class Product:
-    """Modelo para un producto (plato predefinido o base)."""
     id: str
     name: str
     description: str
@@ -25,17 +53,7 @@ class Product:
     is_customizable: bool
 
 @dataclass
-class User:
-    """Modelo para un usuario."""
-    id: str
-    email: str
-    name: str
-    address: Optional[dict] = None
-    phone: Optional[str] = None
-
-@dataclass
 class CartItem:
-    """Modelo para un item dentro del carrito."""
     product_id: str
     name: str
     unit_price: float
@@ -43,25 +61,23 @@ class CartItem:
     customization_details: Optional[List[Ingredient]] = field(default_factory=list)
     item_total: float = 0.0
 
-    def _post_init_(self):
-        # Calcula el total del ítem (precio base + precio de ingredientes * cantidad)
+    def __post_init__(self):
+        """Calcula el total del ítem considerando personalización."""
         custom_price = sum(ing.price for ing in self.customization_details)
         self.item_total = (self.unit_price + custom_price) * self.quantity
 
 @dataclass
 class Order:
-    """Modelo para una orden de compra."""
     id: str
     user_id: str
     items: List[CartItem]
     total_amount: float
     shipping_address: dict
-    payment_status: str # 'pending', 'paid', 'failed'
-    delivery_status: str # 'new', 'preparing', 'shipped', 'delivered'
-    created_at: str # Timestamp
+    payment_status: str  # 'pending', 'paid', 'failed'
+    delivery_status: str  # 'new', 'preparing', 'shipped', 'delivered'
+    created_at: str  # Timestamp
 
-# --- Funciones Mock (Simulación de datos) ---
-
+# ----------------- FUNCIONES MOCK -----------------
 def get_mock_products() -> List[Product]:
     """Retorna una lista de productos mock para el catálogo."""
     return [
@@ -81,5 +97,4 @@ def get_mock_products() -> List[Product]:
             image_url='/static/assets/product_images/vegan_pizza.webp',
             is_customizable=False
         ),
-        # Más productos...
     ]

@@ -1,49 +1,136 @@
 {% extends "_base.html" %}
 
 {% block content %}
-<h2 class="text-3xl font-bold text-gray-900 mb-6">Nuestro Catálogo de Platos</h2>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    {% for product in products %}
-    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
-        <img src="{{ product.image_url }}" alt="{{ product.name }}" class="w-full h-48 object-cover">
-        <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ product.name }}</h3>
-            <p class="text-gray-500 text-sm mb-4 flex-grow">{{ product.description }}</p>
-            <p class="text-2xl font-bold text-red-600 mb-4">S/ {{ "%.2f"|format(product.base_price) }}</p>
+<!-- ================= HERO / BANNER ================= -->
+<section class="bg-red-50 py-16">
+    <div class="container mx-auto px-6 text-center">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-red-600 mb-4">Descubre Nuestros Platos Deliciosos</h1>
+        <p class="text-gray-700 text-lg md:text-xl mb-6">Explora, personaliza y disfruta de tu comida favorita en un solo lugar.</p>
+        <a href="{{ url_for('main.catalogue') }}" class="inline-block bg-red-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-red-700 transition duration-300">
+            Ver Catálogo
+        </a>
+    </div>
+</section>
 
-            {% if product.is_customizable %}
-            <a href="{{ url_for('main.customizer_page') }}?product={{ product.id }}" class="block text-center w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition duration-300">
-                Personalizar y Comprar
-            </a>
-            {% else %}
-            <button data-product-id="{{ product.id }}" data-price="{{ product.base_price }}" class="add-to-cart-btn block text-center w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition duration-300">
-                Añadir al Carrito
-            </button>
-            {% endif %}
+<!-- ================= FILTROS / CATEGORÍAS ================= -->
+<section class="container mx-auto px-6 py-8">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6">Filtrar por Categoría</h2>
+    <div class="flex flex-wrap gap-4">
+        <button class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition">Todos</button>
+        <button class="px-4 py-2 bg-red-100 text-red-600 rounded-md hover:bg-red-200 transition">Vegetariano</button>
+        <button class="px-4 py-2 bg-red-100 text-red-600 rounded-md hover:bg-red-200 transition">Postres</button>
+        <button class="px-4 py-2 bg-red-100 text-red-600 rounded-md hover:bg-red-200 transition">Bebidas</button>
+        <button class="px-4 py-2 bg-red-100 text-red-600 rounded-md hover:bg-red-200 transition">Carnes</button>
+    </div>
+</section>
+
+<!-- ================= CATÁLOGO DE PRODUCTOS ================= -->
+<section class="container mx-auto px-6 py-12">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6">Nuestro Catálogo de Platos</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for product in products %}
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col hover:shadow-2xl transition duration-300">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}" class="w-full h-48 object-cover">
+            <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ product.name }}</h3>
+                <p class="text-gray-500 text-sm mb-4 flex-grow">{{ product.description }}</p>
+                <p class="text-2xl font-bold text-red-600 mb-4">S/ {{ "%.2f"|format(product.base_price) }}</p>
+                {% if product.is_customizable %}
+                <a href="{{ url_for('main.customizer_page') }}?product={{ product.id }}" class="block text-center w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition duration-300">
+                    Personalizar y Comprar
+                </a>
+                {% else %}
+                <button data-product-id="{{ product.id }}" data-price="{{ product.base_price }}" class="add-to-cart-btn block text-center w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition duration-300">
+                    Añadir al Carrito
+                </button>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- ================= PROMOCIONES DESTACADAS ================= -->
+<section class="bg-gray-50 py-12">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Platos Destacados</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Ejemplo de plato destacado -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="/static/images/destacado1.jpg" alt="Plato Destacado" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Plato Especial</h3>
+                    <p class="text-gray-500 text-sm mb-4">Un plato exquisito con ingredientes frescos y de calidad.</p>
+                    <p class="text-2xl font-bold text-red-600">S/ 25.00</p>
+                </div>
+            </div>
         </div>
     </div>
-    {% endfor %}
-</div>
+</section>
+
+<!-- ================= TESTIMONIOS ================= -->
+<section class="container mx-auto px-6 py-12">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">Lo Que Dicen Nuestros Clientes</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+            <p class="text-gray-500 mb-4">"¡La comida llegó rápida y deliciosa! Totalmente recomendado."</p>
+            <h4 class="font-semibold text-gray-900">Ana P.</h4>
+        </div>
+        <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+            <p class="text-gray-500 mb-4">"Me encantó la opción de personalizar mis platos. Excelente servicio."</p>
+            <h4 class="font-semibold text-gray-900">Luis M.</h4>
+        </div>
+        <div class="bg-white rounded-lg shadow-lg p-6 text-center">
+            <p class="text-gray-500 mb-4">"La mejor experiencia de comida online que he tenido."</p>
+            <h4 class="font-semibold text-gray-900">Carla R.</h4>
+        </div>
+    </div>
+</section>
+
+<!-- ================= NEWSLETTER ================= -->
+<section class="bg-red-50 py-12">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Suscríbete a nuestras novedades</h2>
+        <p class="text-gray-700 mb-6">Recibe ofertas exclusivas y descubre nuestros nuevos platos.</p>
+        <form class="max-w-xl mx-auto flex flex-col sm:flex-row gap-4">
+            <input type="email" placeholder="Ingresa tu email" class="flex-grow px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500">
+            <button type="submit" class="bg-red-600 text-white px-6 py-2 rounded-md hover:bg-red-700 transition duration-300">Suscribirse</button>
+        </form>
+    </div>
+</section>
 
 {% endblock %}
 
 {% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    // Lógica básica de añadir al carrito desde el catálogo
     document.addEventListener('DOMContentLoaded', () => {
+        const cartCount = document.getElementById('cart-count');
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function updateCartCount() {
+            if (cartCount) cartCount.textContent = cart.length;
+        }
+
+        updateCartCount();
+
         document.querySelectorAll('.add-to-cart-btn').forEach(button => {
             button.addEventListener('click', (e) => {
                 const productId = e.target.getAttribute('data-product-id');
                 const price = parseFloat(e.target.getAttribute('data-price'));
 
-                // Llamada a la función de cart_store.js
-                addToCart({
-                    product_id: productId,
-                    quantity: 1
-                });
+                cart.push({ product_id: productId, quantity: 1, price });
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
 
-                alert("${productId}" añadido al carrito!);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Añadido al carrito',
+                    text: 'Producto agregado correctamente!',
+                    timer: 1500,
+                    showConfirmButton: false
+                });
             });
         });
     });

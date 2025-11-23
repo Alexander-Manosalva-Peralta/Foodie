@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Si quieres estilos personalizados, agrégalos abajo */
+:root{
+  --primary-bg: #F9F7F1;
+  --text-dark: #1A1A1A;
+  --accent-gold: #BFA36F;
+  --card-bg: #FFFFFF;
+}
+
+/* Ejemplo de utilidad personalizada (opcional) */
+.btn-accent {
+  @apply px-6 py-3 rounded-lg font-semibold;
+  background-color: var(--accent-gold);
+  color: var(--text-dark);
+}

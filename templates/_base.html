@@ -1,50 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title | default('Foodie E-Commerce') }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind_compiled.css') }}">
-    <style>
-        /* Estilos base si Tailwind no está configurado */
-        body { font-family: 'Arial', sans-serif; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title | default('Foodie E-Commerce') }}</title>
+
+  <!-- CSS compilado local con tus variables y estilos -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind_compiled.css') }}">
+
+  <!-- Tailwind CDN solo si quieres utilidades nuevas -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-primary-bg text-text-dark font-serif">
 
-    <header class="bg-white shadow-md sticky top-0 z-10">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <a href="{{ url_for('main.home') }}" class="text-2xl font-bold text-red-600">Foodie Co.</a>
-            <div class="space-x-4">
-                <a href="{{ url_for('main.catalogue') }}" class="text-gray-600 hover:text-red-600">Catálogo</a>
-                <a href="{{ url_for('main.customizer_page') }}" class="text-gray-600 hover:text-red-600">Personaliza</a>
-                <a href="/login" class="text-gray-600 hover:text-red-600">
-                    {% if session.get('logged_in') %}Mi Cuenta{% else %}Iniciar Sesión{% endif %}
-                </a>
-                <button id="cart-button" class="relative p-2 rounded-full bg-red-100 text-red-600 hover:bg-red-200">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    <span id="cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full">0</span>
-                </button>
-            </div>
-        </nav>
-    </header>
+<!-- Navbar -->
+<nav class="bg-white shadow-md p-4 flex justify-between items-center">
+    <a href="{{ url_for('main.home') }}" class="text-2xl font-bold text-red-600">Foodie Co.</a>
+    <div class="space-x-4">
+        <a href="{{ url_for('main.home') }}" class="hover:text-red-600">Inicio</a>
+        <a href="{{ url_for('main.catalogue') }}" class="hover:text-red-600">Catálogo</a>
+        <a href="{{ url_for('main.contact') }}" class="hover:text-red-600">Contacto</a>
+        {% if session.get('logged_in') %}
+            <a href="{{ url_for('main.logout') }}" class="hover:text-red-600">Cerrar Sesión</a>
+        {% else %}
+            <a href="{{ url_for('main.login') }}" class="hover:text-red-600">Iniciar Sesión</a>
+        {% endif %}
+    </div>
+</nav>
 
-    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        {% block content %}{% endblock %}
-    </main>
+<main class="container mx-auto p-6">
+    {% block content %}{% endblock %}
+</main>
 
-    <footer class="bg-gray-900 mt-12">
-        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-white text-center">
-            <p>&copy; 2025 Foodie Co. Todos los derechos reservados.</p>
-            <div class="mt-4 space-x-4 text-sm">
-                <a href="{{ url_for('main.shipping_policy') }}" class="hover:text-red-400">Política de Envíos</a>
-                <a href="{{ url_for('main.claims_book') }}" class="hover:text-red-400">Libro de Reclamaciones</a>
-            </div>
-        </div>
-    </footer>
+<footer class="bg-white mt-12 p-4 text-center text-gray-600">
+    &copy; 2025 Foodie Co. Todos los derechos reservados. |
+    <a href="{{ url_for('main.claims_book') }}">Libro de Reclamaciones</a> |
+    <a href="{{ url_for('main.shipping_policy') }}">Política de Envíos</a>
+</footer>
 
-    <script src="{{ url_for('static', filename='js/cart_store.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
-    {% block scripts %}{% endblock %}
+<script src="{{ url_for('static', filename='js/cart_store.js') }}"></script>
+<script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+{% block scripts %}{% endblock %}
 </body>
 </html>

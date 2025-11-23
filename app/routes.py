@@ -59,3 +59,16 @@ def logout():
     session.pop('user_id', None)
     flash('Sesión cerrada.', 'info')
     return redirect(url_for('main.home'))
+@main.route('/contact')
+def contact():
+    """Página de contacto."""
+    return render_template('contact.html', title='Contacto')
+
+# Puedes agregar FAQ, About, Blog, etc. más adelante
+@main.route('/about')
+def about():
+    return render_template('about.html', title='Acerca de Foodie Co.')
+@main.route('/cart')
+def cart():
+    # Aquí puedes pasar los datos del carrito
+    return render_template('cart.html', title='Carrito de Compras')
