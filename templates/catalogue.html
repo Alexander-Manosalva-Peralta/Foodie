@@ -1,6 +1,51 @@
 {% extends "_base.html" %}
-{% block title %}Catálogo{% endblock %}
+
 {% block content %}
-<h2>Catálogo</h2>
-<div id="products">Aquí se listarán los productos (render por backend o fetch desde /api)</div>
+<h2 class="text-3xl font-bold text-gray-900 mb-6">Nuestro Catálogo de Platos</h2>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    {% for product in products %}
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
+        <img src="{{ product.image_url }}" alt="{{ product.name }}" class="w-full h-48 object-cover">
+        <div class="p-6 flex flex-col flex-grow">
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ product.name }}</h3>
+            <p class="text-gray-500 text-sm mb-4 flex-grow">{{ product.description }}</p>
+            <p class="text-2xl font-bold text-red-600 mb-4">S/ {{ "%.2f"|format(product.base_price) }}</p>
+
+            {% if product.is_customizable %}
+            <a href="{{ url_for('main.customizer_page') }}?product={{ product.id }}" class="block text-center w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition duration-300">
+                Personalizar y Comprar
+            </a>
+            {% else %}
+            <button data-product-id="{{ product.id }}" data-price="{{ product.base_price }}" class="add-to-cart-btn block text-center w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition duration-300">
+                Añadir al Carrito
+            </button>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Lógica básica de añadir al carrito desde el catálogo
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const productId = e.target.getAttribute('data-product-id');
+                const price = parseFloat(e.target.getAttribute('data-price'));
+
+                // Llamada a la función de cart_store.js
+                addToCart({
+                    product_id: productId,
+                    quantity: 1
+                });
+
+                alert("${productId}" añadido al carrito!);
+            });
+        });
+    });
+</script>
 {% endblock %}

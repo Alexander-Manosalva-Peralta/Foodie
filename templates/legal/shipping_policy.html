@@ -1,1 +1,17 @@
-<h1>Política de Envíos y Devoluciones</h1>
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-xl">
+    <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b pb-2">Política de Envíos y Devoluciones</h2>
+    <h3 class="text-xl font-semibold mt-4 mb-2 text-gray-800">1. Política de Envíos</h3>
+    <ul class="list-disc pl-6 space-y-2 text-gray-600">
+        <li>*Cobertura:* Actualmente realizamos envíos solo en áreas seleccionadas de Lima Metropolitana.</li>
+        <li>*Tarifas:* Las tarifas de envío se calculan en base a la zona de entrega y se muestran en el checkout.</li>
+        <li>*Tiempos:* El tiempo estimado de entrega es de 30-60 minutos desde la confirmación del pedido.</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold mt-6 mb-2 text-gray-800">2. Política de Devoluciones</h3>
+    <p class="text-gray-600">Debido a la naturaleza de nuestros productos (alimentos frescos), solo aceptamos devoluciones o compensaciones si el pedido llega dañado, incorrecto o si la calidad no cumple con los estándares al momento de la entrega.</p>
+
+    </div>
+{% endblock %}

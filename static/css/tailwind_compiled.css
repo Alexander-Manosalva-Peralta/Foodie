@@ -1,2 +1,13 @@
-/* Tailwind compiled placeholder - reemplazar por archivo real */
-body{font-family:Helvetica,Arial,sans-serif}
+/* Foodie_ECommerce_V1.0/static/css/tailwind_compiled.css */
+
+/* Este archivo debe ser generado por Tailwind CLI.
+Para fines de la estructura, se incluye vacío.
+Para un entorno real, ejecutar: npx tailwindcss -i <path_to_input> -o <path_to_output>
+*/
+
+/* Solo para que el código no falle si no se compila Tailwind:
+*/
+.text-red-600 { color: #dc2626; }
+.bg-red-600 { background-color: #dc2626; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+/* ... y así con el resto de las clases usadas en los templates ... */

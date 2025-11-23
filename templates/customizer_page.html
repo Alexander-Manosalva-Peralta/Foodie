@@ -1,7 +1,68 @@
 {% extends "_base.html" %}
-{% block title %}Personalizador{% endblock %}
+
 {% block content %}
-<h2>Personaliza tu plato</h2>
-<div id="customizer-root">Interfaz del personalizador (SVG + controls)</div>
+<h2 class="text-3xl font-bold text-gray-900 mb-6">Diseña tu Plato</h2>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+    <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-xl">
+        <h3 class="text-xl font-semibold mb-4">Visualizador del Plato</h3>
+
+        <div id="visualizer-area" class="w-full h-80 bg-gray-100 border-2 border-dashed border-gray-300 flex items-center justify-center relative mb-6 rounded-lg">
+            <p class="text-gray-500">Aquí se visualizarán los ingredientes seleccionados.</p>
+            </div>
+
+        <div class="border-t pt-4">
+            <h4 class="text-lg font-bold">Resumen del Pedido</h4>
+            <p class="text-gray-700">Precio Base: S/ <span id="base-price">25.00</span></p>
+            <p class="text-gray-700">Extras: S/ <span id="extra-cost">0.00</span></p>
+            <p class="text-3xl font-extrabold text-red-600 mt-2">Total: S/ <span id="final-price">25.00</span></p>
+
+            <button id="add-custom-to-cart" class="mt-4 w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition duration-300 disabled:opacity-50">
+                Añadir Plato Personalizado al Carrito
+            </button>
+        </div>
+    </div>
+
+    <div class="lg:col-span-1 bg-white p-6 rounded-lg shadow-xl">
+        <h3 class="text-xl font-semibold mb-4">Elige tus Ingredientes</h3>
+
+        <div class="mb-6">
+            <h4 class="font-bold text-gray-800 border-b pb-2 mb-3">1. Base (Obligatorio)</h4>
+            <div id="base-options" class="space-y-2">
+                <label class="block p-3 border rounded-lg cursor-pointer hover:bg-red-50">
+                    <input type="radio" name="base" value="rice" data-price="0.00" class="mr-2">
+                    Arroz Integral (+S/ 0.00)
+                </label>
+                <label class="block p-3 border rounded-lg cursor-pointer hover:bg-red-50">
+                    <input type="radio" name="base" value="quinoa" data-price="2.50" class="mr-2">
+                    Quinua (+S/ 2.50)
+                </label>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <h4 class="font-bold text-gray-800 border-b pb-2 mb-3">2. Proteína (Máx 2)</h4>
+            <div id="protein-options" class="space-y-2">
+                <label class="block p-3 border rounded-lg cursor-pointer hover:bg-red-50">
+                    <input type="checkbox" name="protein" value="chicken" data-price="8.00" class="mr-2">
+                    Pollo al Grill (+S/ 8.00)
+                </label>
+                <label class="block p-3 border rounded-lg cursor-pointer hover:bg-red-50">
+                    <input type="checkbox" name="protein" value="tofu" data-price="5.00" class="mr-2">
+                    Tofu Marinado (+S/ 5.00)
+                </label>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <h4 class="font-bold text-gray-800 border-b pb-2 mb-3">3. Extras (Opcional)</h4>
+            </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
 <script src="{{ url_for('static', filename='js/customizer_visualizer.js') }}"></script>
 {% endblock %}
