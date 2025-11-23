@@ -1,0 +1,7 @@
+{% extends "_base.html" %}
+{% block title %}Personalizador{% endblock %}
+{% block content %}
+<h2>Personaliza tu plato</h2>
+<div id="customizer-root">Interfaz del personalizador (SVG + controls)</div>
+<script src="{{ url_for('static', filename='js/customizer_visualizer.js') }}"></script>
+{% endblock %}
