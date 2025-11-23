@@ -1,0 +1,1 @@
+Pon aquí las imágenes optimizadas (.webp/.avif) y los iconos SVG de ingredientes.

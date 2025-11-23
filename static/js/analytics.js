@@ -1,0 +1,1 @@
+// analytics placeholder (GA4 / Meta Pixel)
