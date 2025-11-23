@@ -1,0 +1,32 @@
+{
+  "name": "foodie_ecommerce_v1.0",
+  "version": "1.0.0",
+  "description": "Estructura de proyecto creada como scaffold profesional con patrón MVC.",
+  "main": "run.py",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tailwind:init": "tailwindcss init -p",
+    "tailwind:watch": "npx tailwindcss -i ./input.css -o ./static/css/tailwind_compiled.css --watch"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.17",
+    "@tailwindcss/forms": "^0.5.10",
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alexander-Manosalva-Peralta/Foodie.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alexander-Manosalva-Peralta/Foodie/issues"
+  },
+  "homepage": "https://github.com/Alexander-Manosalva-Peralta/Foodie#readme"
+}

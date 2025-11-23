@@ -5,15 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08397006-6617-40f8-b53b-8f9603390fe4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/api/cart_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/cart_api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/checkout_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/checkout_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/db_firestore.py" beforeDir="false" afterPath="$PROJECT_DIR$/services/db_firestore.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/css/tailwind_compiled.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/tailwind_compiled.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/catalogue.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/catalogue.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/customizer_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customizer_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/legal/claims_book.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/legal/claims_book.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/legal/shipping_policy.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/legal/shipping_policy.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +36,12 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.appearance&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Documents\GitHub\Foodie_ECommerce_V1.0" />
+      <recent name="C:\Users\User\Documents\GitHub\Foodie_ECommerce_V1.0\app" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="Foodie_ECommerce_V1.0" />

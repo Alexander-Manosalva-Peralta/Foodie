@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, sessio
 from .models import Product, get_mock_products
 
 # Crea un Blueprint para las rutas principales (Vistas)
-main = Blueprint('main', _name_)
+main = Blueprint('main', __name__)
 
 @main.route('/')
 def home():
